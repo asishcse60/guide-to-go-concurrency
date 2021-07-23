@@ -20,6 +20,15 @@ func main() {
 	CheckCustomerHeight(41)
 	CheckCustomerHeight(18)
 	CheckCustomerHeight(10)
+
+	ages := []int{20,25,30,35,40}
+	for i := 0; i < len(ages); i++ {
+		fmt.Printf("age %v is %v\n", i, ages[i])
+	}
+	fmt.Println("Other for loop run")
+	for i,k := range ages	{
+		fmt.Printf("age %v is %v\n", i, k)
+	}
 }
 
 func CheckCustomerHeight(height int) {
