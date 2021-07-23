@@ -1,1 +1,18 @@
+//https://riteeksrivastava.medium.com/a-complete-journey-with-goroutines-8472630c7f5c
 //go run main.go
+//Benefits of GO routine:
+1. Memory Consumption:The creation of Goroutines require much lesser memory as compared to threads.
+It requires 2kb of memory, while threads requires 1Mb(~500 times as compared to Goroutines).
+They are designed in a way that stack size of Goroutines can grow and shrink according to the need of an application.
+There might be only one thread in the program with thousands of Goroutines.
+
+2. Setup and Teardown cost: Threads have significant setups and teardown costs because it has to request resources from the OS and return it once it’s done.
+While Goroutines are created and destroyed by the go runtime (it manages scheduling, garbage collection,
+and the runtime environment for Goroutines) and those operations are pretty cheap.
+
+3. Switch cost: This difference is mainly because of the difference in the scheduling of Goroutines and threads.
+Threads are scheduled preemptively (If a process is running for more than a scheduler time slice, it would preempt the process
+and schedule execution of another runnable process on the same CPU), the schedular needs to save/restore all registers i.e. 16 general purpose registers,
+PC (Program Counter), SP (Stack Pointer), segment registers etc.
+While Goroutines are scheduled cooperatively, (explained in the scheduling section) they do not directly talk to the OS kernel.
+When a Goroutine switch occurs, very few registers (say 3) like program counter and stack pointer need to be saved/restored. For more details refer to this.

@@ -26,37 +26,46 @@ func PrintDetails(e Employee) {
 	fmt.Println(e.GetName())
 }
 
+
 func main() {
+	var x int
+	threads := runtime.GOMAXPROCS(0)
+	for i := 0; i < threads; i++ {
+		go func() {
+			for { x++ }
+		}()
+	}
+	//time.Sleep(time.Second)
+	fmt.Println("x =", x)
+	//engineer := &Engineer{Name: "Ashish"}
+	//manager := &Manager{Name: "Boss"}
 
-	engineer := &Engineer{Name: "Ashish"}
-	manager := &Manager{Name: "Boss"}
-
-	PrintDetails(engineer)
-	PrintDetails(manager)
+	//PrintDetails(engineer)
+	//PrintDetails(manager)
 	//variable declaration
 	//var welcome string="Hello World!"
-	HelloWorld("Ashish", 27, 6)
-	welcome := "Hello World!"
-	fmt.Println(welcome)
+	//HelloWorld("Ashish", 27, 6)
+	//welcome := "Hello World!"
+	//fmt.Println(welcome)
 
-	var myAge = 27
-	fmt.Printf("Age is %v\n", myAge)
+	//var myAge = 27
+	//fmt.Printf("Age is %v\n", myAge)
 	//Constant declaration: const name type(optional) = value
-	const pi  = 3.1416
-	fmt.Printf("Pi Value is: %v\n", pi)
+	//const pi  = 3.1416
+	//fmt.Printf("Pi Value is: %v\n", pi)
 	//println("Hello")
-	CheckCustomerHeight(41)
-	CheckCustomerHeight(18)
-	CheckCustomerHeight(10)
+	//CheckCustomerHeight(41)
+	//CheckCustomerHeight(18)
+	//CheckCustomerHeight(10)
 
-	ages := []int{20,25,30,35,40}
-	for i := 0; i < len(ages); i++ {
-		fmt.Printf("age %v is %v\n", i, ages[i])
-	}
-	fmt.Println("Other for loop run")
-	for i,k := range ages	{
-		fmt.Printf("age %v is %v\n", i, k)
-	}
+	//ages := []int{20,25,30,35,40}
+	//for i := 0; i < len(ages); i++ {
+		//fmt.Printf("age %v is %v\n", i, ages[i])
+	//}
+	///fmt.Println("Other for loop run")
+	//for i,k := range ages	{
+		//fmt.Printf("age %v is %v\n", i, k)
+	//}
 }
 
 func HelloWorld(name string, age, height int) {
