@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/asishcse60/guide-to-go-concurrency/goroutine"
+	"github.com/asishcse60/guide-to-go-concurrency/goroutine/gomutex"
 	"runtime"
 	"sync"
 )
@@ -35,8 +36,24 @@ var urls = []string{
 }
 func main() {
 
+	//Mutex
+	var m sync.Mutex
+	account := gomutex.Account{
+		Balance: 1000,
+		Mutex: &m,
+	}
+	var wg sync.WaitGroup
+
+
+	wg.Add(2)
+	go account.WithDraw(700, &wg)
+	go account.Deposit(500, &wg)
+	wg.Wait()
+	fmt.Println("Account update successful")
+	fmt.Printf("Current balance is %v\n", account.Balance)
 	//Wait Group
-	crawl()
+	//crawl()
+
 	//Channel
 	//values := make(chan int)
 	//go goroutine.CalculateValue(values)
