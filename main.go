@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/asishcse60/guide-to-go-concurrency/goroutine"
 	"runtime"
 )
 type Employee interface {
@@ -28,15 +29,11 @@ func PrintDetails(e Employee) {
 
 
 func main() {
-	var x int
-	threads := runtime.GOMAXPROCS(0)
-	for i := 0; i < threads; i++ {
-		go func() {
-			for { x++ }
-		}()
-	}
-	//time.Sleep(time.Second)
-	fmt.Println("x =", x)
+
+	values := make(chan int)
+	go goroutine.CalculateValue(values)
+	value := <-values
+	fmt.Println(value)
 	//engineer := &Engineer{Name: "Ashish"}
 	//manager := &Manager{Name: "Boss"}
 
