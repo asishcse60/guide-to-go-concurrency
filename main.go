@@ -4,8 +4,35 @@ import (
 	"fmt"
 	"runtime"
 )
+type Employee interface {
+	GetName() string
+}
+type Engineer struct {
+	Name string
+}
+
+type Manager struct {
+	Name string
+}
+
+func (e *Engineer)	GetName()string  {
+	return "engineer name: " + e.Name
+}
+
+func (m *Manager)	GetName()string  {
+	return "Manager name: " + m.Name
+}
+func PrintDetails(e Employee) {
+	fmt.Println(e.GetName())
+}
 
 func main() {
+
+	engineer := &Engineer{Name: "Ashish"}
+	manager := &Manager{Name: "Boss"}
+
+	PrintDetails(engineer)
+	PrintDetails(manager)
 	//variable declaration
 	//var welcome string="Hello World!"
 	HelloWorld("Ashish", 27, 6)
