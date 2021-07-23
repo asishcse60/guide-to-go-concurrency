@@ -16,3 +16,5 @@ and schedule execution of another runnable process on the same CPU), the schedul
 PC (Program Counter), SP (Stack Pointer), segment registers etc.
 While Goroutines are scheduled cooperatively, (explained in the scheduling section) they do not directly talk to the OS kernel.
 When a Goroutine switch occurs, very few registers (say 3) like program counter and stack pointer need to be saved/restored. For more details refer to this.
+
+// Two types of receiver: value type and pointer type
