@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/asishcse60/guide-to-go-concurrency/goroutine"
 	"runtime"
+	"time"
 )
 type Employee interface {
 	GetName() string
@@ -30,10 +31,20 @@ func PrintDetails(e Employee) {
 
 func main() {
 
-	values := make(chan int)
+	//Channel
+	//values := make(chan int)
+	//go goroutine.CalculateValue(values)
+	//value := <-values
+	//fmt.Println(value)
+	//Buffers channel
+	values := make(chan int, 3)
 	go goroutine.CalculateValue(values)
-	value := <-values
-	fmt.Println(value)
+	for i := 0; i < 10; i++ {
+		time.Sleep(1 *time.Second)
+		value:= <-values
+		fmt.Println(value)
+	}
+
 	//engineer := &Engineer{Name: "Ashish"}
 	//manager := &Manager{Name: "Boss"}
 
