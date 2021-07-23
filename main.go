@@ -8,6 +8,7 @@ import (
 func main() {
 	//variable declaration
 	//var welcome string="Hello World!"
+	HelloWorld("Ashish", 27, 6)
 	welcome := "Hello World!"
 	fmt.Println(welcome)
 
@@ -31,6 +32,11 @@ func main() {
 	}
 }
 
+func HelloWorld(name string, age, height int) {
+	fmt.Println("Hello", name)
+	fmt.Println("Age", age)
+	fmt.Println("Height", height)
+}
 func CheckCustomerHeight(height int) {
 
 	switch os := runtime.GOOS; os {
