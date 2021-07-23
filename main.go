@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"github.com/asishcse60/guide-to-go-concurrency/goroutine"
 	"runtime"
-	"time"
+	"sync"
 )
 type Employee interface {
 	GetName() string
@@ -28,23 +28,30 @@ func PrintDetails(e Employee) {
 	fmt.Println(e.GetName())
 }
 
-
+var urls = []string{
+	"https://google.com",
+	"https://twitter.com",
+	"https://tutorialedge.net",
+}
 func main() {
 
+	//Wait Group
+	crawl()
 	//Channel
 	//values := make(chan int)
 	//go goroutine.CalculateValue(values)
 	//value := <-values
 	//fmt.Println(value)
-	//Buffers channel
-	values := make(chan int, 3)
-	go goroutine.CalculateValue(values)
-	for i := 0; i < 10; i++ {
-		time.Sleep(1 *time.Second)
-		value:= <-values
-		fmt.Println(value)
-	}
 
+	//Buffers channel
+	//values := make(chan int, 3)
+	//go goroutine.CalculateValue(values)
+	//for i := 0; i < 10; i++ {
+		//time.Sleep(1 *time.Second)
+		//value:= <-values
+		//fmt.Println(value)
+	//}
+////////////////////////////////////////////
 	//engineer := &Engineer{Name: "Ashish"}
 	//manager := &Manager{Name: "Boss"}
 
@@ -74,6 +81,16 @@ func main() {
 	//for i,k := range ages	{
 		//fmt.Printf("age %v is %v\n", i, k)
 	//}
+}
+
+func crawl() {
+	var wg sync.WaitGroup
+	for _, url := range urls{
+        wg.Add(1)
+        go goroutine.Fetch(url, &wg)
+	}
+	wg.Wait()
+	fmt.Println("finished crawling urls")
 }
 
 func HelloWorld(name string, age, height int) {
