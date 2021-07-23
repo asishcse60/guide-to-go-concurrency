@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"github.com/asishcse60/guide-to-go-concurrency/goroutine"
 	"github.com/asishcse60/guide-to-go-concurrency/goroutine/gomutex"
+	"github.com/asishcse60/guide-to-go-concurrency/goroutine/workerpool"
+	"log"
 	"runtime"
 	"sync"
 )
@@ -36,6 +38,8 @@ var urls = []string{
 }
 func main() {
 
+	workerpool.RunWorkerPool()
+	log.Println("Mutex Started...........")
 	//Mutex
 	var m sync.Mutex
 	account := gomutex.Account{
